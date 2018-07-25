@@ -61,10 +61,10 @@ public class TwoPlayersAdapter extends RecyclerView.Adapter<TwoPlayersAdapter.Vi
         }
 
         private void bind(Player player1, Player player2) {
-            numberPlayer1.setText(player1.number);
-            namePlayer1.setText(player1.name);
-            numberPlayer2.setText(player2.number);
-            namePlayer2.setText(player2.name);
+            numberPlayer1.setText(player1.getNumber());
+            namePlayer1.setText(player1.getName());
+            numberPlayer2.setText(player2.getNumber());
+            namePlayer2.setText(player2.getName());
         }
     }
 }

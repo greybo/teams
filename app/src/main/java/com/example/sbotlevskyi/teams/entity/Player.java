@@ -4,17 +4,26 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Player implements Parcelable {
-    public String number;
-    public String name;
+    private String number;
+    private String name;
+    private boolean isGoalkeeper;
+
 
     public Player(String number, String name) {
         this.number = number;
         this.name = name;
     }
 
+    public Player(String number, String name, boolean isGoalkeeper) {
+        this.number = number;
+        this.name = name;
+        this.isGoalkeeper = isGoalkeeper;
+    }
+
     protected Player(Parcel in) {
         number = in.readString();
         name = in.readString();
+        isGoalkeeper = in.readByte() == 1;
     }
 
     public static final Creator<Player> CREATOR = new Creator<Player>() {
@@ -50,9 +59,18 @@ public class Player implements Parcelable {
         return 0;
     }
 
+    public boolean isGoalkeeper() {
+        return isGoalkeeper;
+    }
+
+    public void setGoalkeeper(boolean goalkeeper) {
+        isGoalkeeper = goalkeeper;
+    }
+
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(number);
         parcel.writeString(name);
+        parcel.writeByte((byte) (isGoalkeeper ? 1 : 0));
     }
 }

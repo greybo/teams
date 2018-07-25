@@ -57,8 +57,8 @@ public class PlayerTeamsFragment extends Fragment {
     }
 
     private ArrayList<ListRows> getListRows() {
-        addToList(teams.playersTeam1, teams.nameTeam1,1);
-        addToList(teams.playersTeam2, teams.nameTeam2,2);
+        addToList(teams.getPlayersTeam1(), teams.getNameTeam1(),1);
+        addToList(teams.getPlayersTeam2(), teams.getNameTeam2(),2);
         return listRows;
     }
 

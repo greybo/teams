@@ -7,12 +7,12 @@ import java.util.ArrayList;
 
 public class Teams implements Parcelable {
 
-    public String nameTeam1;
-    public String nameTeam2;
-    public String scoreTeam1;
-    public String scoreTeam2;
-    public ArrayList<Player> playersTeam1;
-    public ArrayList<Player> playersTeam2;
+    private String nameTeam1;
+    private String nameTeam2;
+    private String scoreTeam1;
+    private String scoreTeam2;
+    private ArrayList<Player> playersTeam1;
+    private ArrayList<Player> playersTeam2;
 
     public Teams(String nameTeam1, String nameTeam2, String scoreTeam1, String scoreTeam2,
                  ArrayList<Player> playersTeam1, ArrayList<Player> playersTeam2) {

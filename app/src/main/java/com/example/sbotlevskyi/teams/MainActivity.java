@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Teams getTeams() {
         Teams teams = new Teams("France", "Belgium", "1", "0",
                 new ArrayList<Player>() {{
-                    add(new Player("1", "name"));
+                    add(new Player("1", "name", true));
                     add(new Player("2", "name"));
                     add(new Player("3", "name"));
                     add(new Player("4", "name"));
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                     add(new Player("11", "name"));
                 }},
                 new ArrayList<Player>() {{
-                    add(new Player("1", "name"));
+                    add(new Player("1", "name", true));
                     add(new Player("2", "name"));
                     add(new Player("3", "name"));
                     add(new Player("4", "name"));

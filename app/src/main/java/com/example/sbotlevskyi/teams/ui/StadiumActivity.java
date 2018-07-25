@@ -38,8 +38,8 @@ public class StadiumActivity extends AppCompatActivity {
 //        setSupportActionBar(toolbar);
 
         teams = getIntent().getParcelableExtra(Constants.INTENT_TEAMS);
-        titleTeam1.setText(String.format("%s %s : %s %s", teams.nameTeam1, teams.scoreTeam1,
-                teams.scoreTeam2, teams.nameTeam2));
+        titleTeam1.setText(String.format("%s %s : %s %s", teams.getNameTeam1(), teams.getScoreTeam1(),
+                teams.getScoreTeam2(), teams.getNameTeam2()));
 //        titleTeam1.setText(teams.nameTeam1 + ' ' + teams.scoreTeam1+" :");
 //        titleTeam2.setText(" "+teams.scoreTeam2+ ' ' +teams.nameTeam2);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());

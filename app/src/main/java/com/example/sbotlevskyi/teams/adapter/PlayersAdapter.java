@@ -78,8 +78,8 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.ViewHold
 
         void bind(ListRows model) {
             Player player = model.getPlayer();
-            number.setText(player.number);
-            name.setText(player.name);
+            number.setText(player.getNumber());
+            name.setText(player.getName());
 //            if (model.getTypeTeam() == 2) {
 //                number.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.background_circle_black));
 //            }

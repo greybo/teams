@@ -54,24 +54,24 @@ public class LocationPlayersFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_location_players, container, false);
         ButterKnife.bind(this, rootView);
         teams = getArguments().getParcelable(ARG_PLAYERS_TEAM);
-        nameTeam1.setText(teams.nameTeam1);
-        nameTeam2.setText(teams.nameTeam2);
+        nameTeam1.setText(teams.getNameTeam1());
+        nameTeam2.setText(teams.getNameTeam2());
         fillFootballField();
         createAdapter();
         return rootView;
     }
 
     private void createAdapter() {
-        TwoPlayersAdapter adapter = new TwoPlayersAdapter(teams.playersTeam1, teams.playersTeam2);
+        TwoPlayersAdapter adapter = new TwoPlayersAdapter(teams.getPlayersTeam1(), teams.getPlayersTeam2());
         twoTeamsPlayersRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         twoTeamsPlayersRecycler.setAdapter(adapter);
     }
 
     private void fillFootballField() {
         Stack<Player> playerStack;
-        playerStack = TeamUtils.toStackRevert(teams.playersTeam1);
+        playerStack = TeamUtils.toStackRevert(teams.getPlayersTeam1());
         getPlayerItems(playerStack, 1);
-        playerStack = TeamUtils.toStack(teams.playersTeam2);
+        playerStack = TeamUtils.toStack(teams.getPlayersTeam2());
         getPlayerItems(playerStack, 2);
     }
 
@@ -90,27 +90,36 @@ public class LocationPlayersFragment extends Fragment {
 
     private View getView(int countPlayers, int typeTeam, Stack<Player> playerStack) {
         View view;
+        Player player;
         LinearLayout layoutRow = new LinearLayout(getContext());
         layoutRow.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
         layoutRow.setOrientation(LinearLayout.HORIZONTAL);
         for (int i = 0; i < countPlayers; i++) {
-            if (typeTeam == 1) {
-                view = LayoutInflater
-                        .from(getContext())
-                        .inflate(R.layout.item_player_circle_field_orange, layoutRow, false);
-            } else {
-                view = LayoutInflater
-                        .from(getContext())
-                        .inflate(R.layout.item_player_circle_field_black, layoutRow, false);
-            }
-
             if (!playerStack.empty()) {
-                Player player = playerStack.pop();
-                ((TextView) view.findViewById(R.id.tv_circle_number)).setText(player.number);
-                ((TextView) view.findViewById(R.id.tv_circle_name)).setText(player.name);
+                player = playerStack.pop();
+
+                if (player != null && player.isGoalkeeper()) {
+                    view = LayoutInflater
+                            .from(getContext())
+                            .inflate(R.layout.item_player_circle_field_white, layoutRow, false);
+                } else {
+                    if (typeTeam == 1) {
+                        view = LayoutInflater
+                                .from(getContext())
+                                .inflate(R.layout.item_player_circle_field_orange, layoutRow, false);
+                    } else {
+                        view = LayoutInflater
+                                .from(getContext())
+                                .inflate(R.layout.item_player_circle_field_black, layoutRow, false);
+                    }
+                }
+
+                ((TextView) view.findViewById(R.id.tv_circle_number)).setText(player.getNumber());
+                ((TextView) view.findViewById(R.id.tv_circle_name)).setText(player.getName());
                 layoutRow.addView(view, i);
             }
+
         }
         return layoutRow;
     }
