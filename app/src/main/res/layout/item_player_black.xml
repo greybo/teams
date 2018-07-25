@@ -11,8 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:background="@drawable/background_circle_orange"
-        android:gravity="center" />
+        android:background="@drawable/background_circle_black"
+        android:gravity="center"
+        android:textColor="@android:color/white" />
 
     <TextView
         android:id="@+id/tv_name_player"

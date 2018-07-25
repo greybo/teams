@@ -6,6 +6,7 @@
 
     <color name="tab_background_selected">#fefefe</color>
     <color name="tab_background_unselected">#fff</color>
-    <color name="colorText">#000</color>
+    <color name="colorText">#000000</color>
+    <color name="gray">#ededed</color>
 
 </resources>

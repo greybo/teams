@@ -27,31 +27,36 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = null;
+        View view;
         switch (i) {
             case 0:
                 view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_player,
                         viewGroup, false);
-                break;
+                return new ViewHolderPlayer(view);
             case 1:
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_player_black,
+                        viewGroup, false);
+                return new ViewHolderPlayer(view);
+            default:
                 view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_name_team,
                         viewGroup, false);
-                break;
+                return new ViewHolderName(view);
         }
-        return new ViewHolder(view);
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (playerList.get(position).getPlayer() != null) {
+        if (playerList.get(position).getPlayer() != null && playerList.get(position).getTypeTeam() == 1) {
             return 0;
+        } else if (playerList.get(position).getPlayer() != null && playerList.get(position).getTypeTeam() == 2) {
+            return 1;
         }
-        return 1;
+        return 2;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Player player = playerList.get(i).getPlayer();
+        ListRows player = playerList.get(i);
         viewHolder.bind(player);
     }
 
@@ -60,20 +65,46 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.ViewHold
         return playerList == null ? 0 : playerList.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolderPlayer extends ViewHolder {
         @BindView(R.id.tv_number_player)
         TextView number;
         @BindView(R.id.tv_name_player)
         TextView name;
 
-        ViewHolder(@NonNull View itemView) {
+        ViewHolderPlayer(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
-        void bind(Player model) {
-            number.setText(model.number);
-            name.setText(model.name);
+        void bind(ListRows model) {
+            Player player = model.getPlayer();
+            number.setText(player.number);
+            name.setText(player.name);
+//            if (model.getTypeTeam() == 2) {
+//                number.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.background_circle_black));
+//            }
         }
+    }
+
+    class ViewHolderName extends ViewHolder {
+        @BindView(R.id.tv_team_name)
+        TextView name;
+
+        ViewHolderName(@NonNull View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+
+        void bind(ListRows model) {
+            name.setText(model.getNameTeam());
+        }
+    }
+
+    abstract class ViewHolder extends RecyclerView.ViewHolder {
+        ViewHolder(@NonNull View itemView) {
+            super(itemView);
+        }
+
+        abstract void bind(ListRows model);
     }
 }

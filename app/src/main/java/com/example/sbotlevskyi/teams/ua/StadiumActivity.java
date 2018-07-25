@@ -1,21 +1,23 @@
 package com.example.sbotlevskyi.teams.ua;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v7.app.AppCompatActivity;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import android.widget.TextView;
 
-import com.example.sbotlevskyi.teams.utils.Constants;
 import com.example.sbotlevskyi.teams.R;
+import com.example.sbotlevskyi.teams.entity.ListRows;
+import com.example.sbotlevskyi.teams.entity.Player;
 import com.example.sbotlevskyi.teams.entity.Teams;
+import com.example.sbotlevskyi.teams.utils.Constants;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,6 +31,7 @@ public class StadiumActivity extends AppCompatActivity {
     private Teams teams;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +48,10 @@ public class StadiumActivity extends AppCompatActivity {
 //        titleTeam2.setText(" "+teams.scoreTeam2+ ' ' +teams.nameTeam2);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
@@ -64,11 +67,7 @@ public class StadiumActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 
 
@@ -82,11 +81,10 @@ public class StadiumActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return PlayerTeamsFragmet.newInstance(teams.playersTeam1, teams.playersTeam2);
-                case 1:
+                    return PlayerTeamsFragmet.newInstance(teams);
+                default:
                     return LocationPlayersFragment.newInstance(1);
             }
-            return PlayerTeamsFragmet.newInstance(teams.playersTeam1, teams.playersTeam2);
         }
 
         @Override
@@ -94,4 +92,6 @@ public class StadiumActivity extends AppCompatActivity {
             return 2;
         }
     }
+
+
 }

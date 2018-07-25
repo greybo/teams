@@ -10,7 +10,9 @@ import android.view.ViewGroup;
 
 import com.example.sbotlevskyi.teams.adapter.PlayersAdapter;
 import com.example.sbotlevskyi.teams.R;
+import com.example.sbotlevskyi.teams.entity.ListRows;
 import com.example.sbotlevskyi.teams.entity.Player;
+import com.example.sbotlevskyi.teams.entity.Teams;
 
 import java.util.ArrayList;
 
@@ -21,20 +23,18 @@ public class PlayerTeamsFragmet extends Fragment {
     @BindView(R.id.rv_team1)
     RecyclerView recyclerViewTeams;
 
-    private static final String ARG_PLAYERS_TEAM1 = "players1";
-    private static final String ARG_PLAYERS_TEAM2 = "players2";
-    private ArrayList<Player> players1;
-    private ArrayList<Player> players2;
+    private static final String ARG_PLAYERS_TEAM = "team";
+    private ArrayList<ListRows> listRows;
+    private Teams teams;
     private PlayersAdapter playersAdapter;
 
     public PlayerTeamsFragmet() {
     }
 
-    public static PlayerTeamsFragmet newInstance(ArrayList<Player> players1, ArrayList<Player> players2) {
+    public static PlayerTeamsFragmet newInstance(Teams teams) {
         PlayerTeamsFragmet fragment = new PlayerTeamsFragmet();
         Bundle args = new Bundle();
-        args.putParcelableArrayList(ARG_PLAYERS_TEAM1, players1);
-        args.putParcelableArrayList(ARG_PLAYERS_TEAM2, players2);
+        args.putParcelable(ARG_PLAYERS_TEAM, teams);
         fragment.setArguments(args);
         return fragment;
     }
@@ -44,15 +44,29 @@ public class PlayerTeamsFragmet extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_player_teams, container, false);
         ButterKnife.bind(this, rootView);
-        players1 = getArguments().getParcelableArrayList(ARG_PLAYERS_TEAM1);
-        players2 = getArguments().getParcelableArrayList(ARG_PLAYERS_TEAM2);
-        createAdapter(players1);
+        teams = getArguments().getParcelable(ARG_PLAYERS_TEAM);
+        listRows = new ArrayList<>();
+        createAdapter();
         return rootView;
     }
 
-    private void createAdapter(ArrayList<Player> players1) {
-        playersAdapter = new PlayersAdapter(players1);
+    private void createAdapter() {
+        playersAdapter = new PlayersAdapter(getListRows());
         recyclerViewTeams.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerViewTeams.setAdapter(playersAdapter);
     }
+
+    private ArrayList<ListRows> getListRows() {
+        addToList(teams.playersTeam1, teams.nameTeam1,1);
+        addToList(teams.playersTeam2, teams.nameTeam2,2);
+        return listRows;
+    }
+
+    private void addToList(ArrayList<Player> players, String teamName,int type) {
+        listRows.add(new ListRows(teamName));
+        for (Player p : players) {
+            listRows.add(new ListRows(p,type));
+        }
+    }
+
 }
