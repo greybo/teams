@@ -30,7 +30,7 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.ViewHold
         View view;
         switch (i) {
             case 0:
-                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_player,
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_player_orange,
                         viewGroup, false);
                 return new ViewHolderPlayer(view);
             case 1:

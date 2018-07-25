@@ -1,4 +1,4 @@
-package com.example.sbotlevskyi.teams.ua;
+package com.example.sbotlevskyi.teams.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PlayerTeamsFragmet extends Fragment {
+public class PlayerTeamsFragment extends Fragment {
     @BindView(R.id.rv_team1)
     RecyclerView recyclerViewTeams;
 
@@ -28,11 +28,11 @@ public class PlayerTeamsFragmet extends Fragment {
     private Teams teams;
     private PlayersAdapter playersAdapter;
 
-    public PlayerTeamsFragmet() {
+    public PlayerTeamsFragment() {
     }
 
-    public static PlayerTeamsFragmet newInstance(Teams teams) {
-        PlayerTeamsFragmet fragment = new PlayerTeamsFragmet();
+    public static PlayerTeamsFragment newInstance(Teams teams) {
+        PlayerTeamsFragment fragment = new PlayerTeamsFragment();
         Bundle args = new Bundle();
         args.putParcelable(ARG_PLAYERS_TEAM, teams);
         fragment.setArguments(args);

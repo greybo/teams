@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.sbotlevskyi.teams.entity.Player;
 import com.example.sbotlevskyi.teams.entity.Teams;
-import com.example.sbotlevskyi.teams.ua.StadiumActivity;
+import com.example.sbotlevskyi.teams.ui.StadiumActivity;
 import com.example.sbotlevskyi.teams.utils.Constants;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.sbotlevskyi.teams.ua;
+package com.example.sbotlevskyi.teams.ui;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -12,12 +12,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.sbotlevskyi.teams.R;
-import com.example.sbotlevskyi.teams.entity.ListRows;
-import com.example.sbotlevskyi.teams.entity.Player;
 import com.example.sbotlevskyi.teams.entity.Teams;
 import com.example.sbotlevskyi.teams.utils.Constants;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -81,9 +77,9 @@ public class StadiumActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return PlayerTeamsFragmet.newInstance(teams);
+                    return PlayerTeamsFragment.newInstance(teams);
                 default:
-                    return LocationPlayersFragment.newInstance(1);
+                    return LocationPlayersFragment.newInstance(teams);
             }
         }
 
