@@ -1,6 +1,5 @@
 package com.example.sbotlevskyi.teams.adapter;
 
-import android.media.MediaCodecInfo;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

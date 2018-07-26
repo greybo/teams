@@ -32,8 +32,8 @@ public class LocationPlayersFragment extends Fragment {
     @BindView(R.id.tv_name_team_2)
     TextView nameTeam2;
 
-    private int[] sequense = {1, 4, 2, 3, 1};
-    private int[] sequenseBack = {1, 3, 2, 4, 1};
+    private int[] sequence = {1, 4, 2, 3, 1};
+    private int[] sequenceBack = {1, 3, 2, 4, 1};
     private static final String ARG_PLAYERS_TEAM = "team";
     private Teams teams;
 
@@ -78,9 +78,9 @@ public class LocationPlayersFragment extends Fragment {
     private void getPlayerItems(Stack<Player> playerStack, int typeTeam) {
         int[] arr;
         if (typeTeam == 1) {
-            arr = sequense;
+            arr = sequence;
         } else {
-            arr = sequenseBack;
+            arr = sequenceBack;
         }
 
         for (int i : arr) {
