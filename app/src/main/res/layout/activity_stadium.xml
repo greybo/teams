@@ -28,21 +28,21 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <!--<ImageView-->
-                <!--android:id="@+id/image_main"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:fitsSystemWindows="true"-->
-                <!--android:scaleType="centerCrop"-->
-                <!--android:src="@drawable/background_title1"-->
-                <!--app:layout_collapseMode="parallax" />-->
+            <!--android:id="@+id/image_main"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:fitsSystemWindows="true"-->
+            <!--android:scaleType="centerCrop"-->
+            <!--android:src="@drawable/background_title1"-->
+            <!--app:layout_collapseMode="parallax" />-->
 
             <TextView
                 android:id="@+id/tv_colapstitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
                 android:gravity="center"
-                android:padding="8dp"
                 android:text="@string/stadium_title"
                 app:layout_collapseMode="parallax" />
 
@@ -51,7 +51,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/stadium_score_layout_height"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:background="@android:color/transparent">
 

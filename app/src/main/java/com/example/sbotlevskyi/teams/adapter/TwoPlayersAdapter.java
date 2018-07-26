@@ -33,15 +33,16 @@ public class TwoPlayersAdapter extends RecyclerView.Adapter<TwoPlayersAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull TwoPlayersAdapter.ViewHolder viewHolder, int i) {
-        Player player1 = players1.get(i);
-        Player player2 = players2.get(i);
-        viewHolder.bind(player1, player2);
-
+        viewHolder.bind(i);
     }
 
     @Override
     public int getItemCount() {
-        return players1.size();
+        int count = players1.size();
+        if (players2.size() > count) {
+            count = players2.size();
+        }
+        return count;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -59,11 +60,17 @@ public class TwoPlayersAdapter extends RecyclerView.Adapter<TwoPlayersAdapter.Vi
             ButterKnife.bind(this, itemView);
         }
 
-        private void bind(Player player1, Player player2) {
-            numberPlayer1.setText(player1.getNumber());
-            namePlayer1.setText(player1.getName());
-            numberPlayer2.setText(player2.getNumber());
-            namePlayer2.setText(player2.getName());
+        private void bind(int i) {
+            if (i < players1.size()) {
+                Player player1 = players1.get(i);
+                numberPlayer1.setText(player1.getNumber());
+                namePlayer1.setText(player1.getName());
+            }
+            if (i < players2.size()) {
+                Player player2 = players2.get(i);
+                numberPlayer2.setText(player2.getNumber());
+                namePlayer2.setText(player2.getName());
+            }
         }
     }
 }
