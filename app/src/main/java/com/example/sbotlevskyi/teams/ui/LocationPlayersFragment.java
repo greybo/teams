@@ -74,26 +74,11 @@ public class LocationPlayersFragment extends Fragment {
             fieldLayout1.addView(getView(i, 1, playerStack));
         }
 
-//        getPlayerItems(playerStack, 1);
         playerStack = TeamUtils.toStack(teams.getPlayersTeam2());
         for (int i : TeamUtils.arrayRevert(teams.getSequenceTeam2())) {
             fieldLayout2.addView(getView(i, 2, playerStack));
         }
-//        getPlayerItems(playerStack, 2);
     }
-
-//    private void getPlayerItems(Stack<Player> playerStack, int typeTeam) {
-//        int[] arr;
-//        if (typeTeam == 1) {
-//            arr = sequence;
-//        } else {
-//            arr = sequenceBack;
-//        }
-//
-//        for (int i : arr) {
-//            fieldLayout1.addView(getView(i, typeTeam, playerStack));
-//        }
-//    }
 
     private View getView(int countPlayers, int typeTeam, Stack<Player> playerStack) {
         View view;

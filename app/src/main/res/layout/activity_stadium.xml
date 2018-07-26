@@ -16,26 +16,25 @@
         android:paddingTop="@dimen/appbar_padding_top"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <!--<android.support.v7.widget.Toolbar-->
-        <!--android:id="@+id/toolbar"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="?attr/actionBarSize"-->
-        <!--android:layout_weight="1"-->
-        <!--android:background="?attr/colorPrimary"-->
-        <!--app:layout_scrollFlags="scroll|enterAlways"-->
-        <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
-        <!--app:title="@string/stadium_title">-->
 
-        <!--</android.support.v7.widget.Toolbar>-->
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/stadium_app_bar_height"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <!--<ImageView-->
+                <!--android:id="@+id/image_main"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:fitsSystemWindows="true"-->
+                <!--android:scaleType="centerCrop"-->
+                <!--android:src="@drawable/background_title1"-->
+                <!--app:layout_collapseMode="parallax" />-->
 
             <TextView
                 android:id="@+id/tv_colapstitle"
@@ -44,37 +43,120 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:padding="8dp"
-                android:text="@string/stadium_title" />
+                android:text="@string/stadium_title"
+                app:layout_collapseMode="parallax" />
+
         </android.support.design.widget.CollapsingToolbarLayout>
 
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="@dimen/stadium_score_layout_height"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/transparent">
+
+            <LinearLayout
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_toLeftOf="@+id/tv_score_team1"
+                android:layout_toStartOf="@+id/tv_score_team1"
+                android:gravity="center_vertical|end">
+
+                <TextView
+                    android:id="@+id/tv_name_team1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_toLeftOf="@+id/icon_flag_team_1"
+                    android:layout_toStartOf="@+id/icon_flag_team_1"
+                    android:gravity="center_vertical|end"
+                    android:text="team1" />
+
+                <ImageView
+                    android:id="@+id/icon_flag_team_1"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_toLeftOf="@+id/tv_score_team1"
+                    android:layout_toStartOf="@+id/tv_score_team1"
+                    android:src="@mipmap/ic_launcher" />
+            </LinearLayout>
+
 
             <TextView
-                android:id="@+id/tv_team1"
-                android:layout_width="match_parent"
+                android:id="@+id/tv_score_team1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_weight="1"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_toLeftOf="@+id/tv_center"
+                android:layout_toStartOf="@+id/tv_center"
+                android:text="0" />
+
+            <TextView
+                android:id="@+id/tv_center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
                 android:gravity="center"
-                android:padding="8dp"
-                android:text="team1" />
+                android:text=":" />
 
             <TextView
-                android:id="@+id/tv_team2"
-                android:layout_width="match_parent"
+                android:id="@+id/tv_score_team2"
+                android:layout_width="20dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:text="team2"
-                android:visibility="gone" />
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_toEndOf="@+id/tv_center"
+                android:layout_toRightOf="@+id/tv_center"
+                android:text="0" />
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_toEndOf="@+id/tv_score_team2"
+                android:layout_toRightOf="@+id/tv_score_team2"
+                android:gravity="center_vertical|start">
+
+                <ImageView
+                    android:id="@+id/icon_flag_team_2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_toEndOf="@+id/tv_score_team2"
+                    android:layout_toRightOf="@+id/tv_score_team2"
+                    android:src="@mipmap/ic_launcher" />
+
+                <TextView
+                    android:id="@+id/tv_name_team2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_toEndOf="@+id/icon_flag_team_2"
+                    android:layout_toRightOf="@+id/icon_flag_team_2"
+                    android:text="team2" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
@@ -87,7 +169,6 @@
                 android:id="@+id/tabItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="@string/tab_text_1" />
 
             <android.support.design.widget.TabItem

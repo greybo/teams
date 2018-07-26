@@ -1,14 +1,18 @@
 package com.example.sbotlevskyi.teams.ui;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.sbotlevskyi.teams.R;
@@ -19,29 +23,37 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class StadiumActivity extends AppCompatActivity {
-    @BindView(R.id.tv_team1)
-    TextView titleTeam1;
-    @BindView(R.id.tv_team2)
-    TextView titleTeam2;
+    private static final String TAG = "StadiumActivity";
+    @BindView(R.id.tv_name_team1)
+    TextView titleNameTeam1;
+    @BindView(R.id.tv_name_team2)
+    TextView titleNameTeam2;
+    @BindView(R.id.tv_score_team1)
+    TextView titleScoreTeam1;
+    @BindView(R.id.tv_score_team2)
+    TextView titleScoreTeam2;
+    @BindView(R.id.appbar)
+    AppBarLayout appBarLayout;
+    @BindView(R.id.icon_flag_team_1)
+    ImageView iconFlag1;
+    @BindView(R.id.icon_flag_team_2)
+    ImageView iconFlag2;
 
     private Teams teams;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
-
+    private int appbarHeight;
+    private int scoreHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stadium);
         ButterKnife.bind(this);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//        }
         teams = getIntent().getParcelableExtra(Constants.INTENT_TEAMS);
-        titleTeam1.setText(String.format("%s %s : %s %s", teams.getNameTeam1(), teams.getScoreTeam1(),
-                teams.getScoreTeam2(), teams.getNameTeam2()));
-//        titleTeam1.setText(teams.nameTeam1 + ' ' + teams.scoreTeam1+" :");
-//        titleTeam2.setText(" "+teams.scoreTeam2+ ' ' +teams.nameTeam2);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         mViewPager = findViewById(R.id.container);
@@ -51,21 +63,29 @@ public class StadiumActivity extends AppCompatActivity {
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                appbarHeight = appBarLayout.getTotalScrollRange();
+                double coefficient = ((double) (appbarHeight + verticalOffset) / appbarHeight);
+
+                Log.i(TAG, "onOffsetChanged:  appbarHeight=" + (appbarHeight + verticalOffset) + "  coefficient=" + coefficient);
+                iconFlag1.setScaleX((float) coefficient);
+                iconFlag1.setScaleY((float) coefficient);
+                iconFlag2.setScaleX((float) coefficient);
+                iconFlag2.setScaleY((float) coefficient);
+            }
+        });
+        fieldTitleScore();
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    private void fieldTitleScore() {
+        titleNameTeam1.setText(teams.getNameTeam1());
+        titleNameTeam2.setText(teams.getNameTeam2());
+        titleScoreTeam1.setText(teams.getScoreTeam1());
+        titleScoreTeam2.setText(teams.getScoreTeam2());
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        return id == R.id.action_settings || super.onOptionsItemSelected(item);
-    }
-
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
@@ -88,6 +108,4 @@ public class StadiumActivity extends AppCompatActivity {
             return 2;
         }
     }
-
-
 }
