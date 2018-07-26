@@ -23,8 +23,10 @@ import butterknife.ButterKnife;
 
 public class LocationPlayersFragment extends Fragment {
 
-    @BindView(R.id.football_field_layout)
-    LinearLayout fieldLayout;
+    @BindView(R.id.football_field_layout_team_1)
+    LinearLayout fieldLayout1;
+    @BindView(R.id.football_field_layout_team_2)
+    LinearLayout fieldLayout2;
     @BindView(R.id.rv_two_teams_players)
     RecyclerView twoTeamsPlayersRecycler;
     @BindView(R.id.tv_name_team_1)
@@ -32,8 +34,6 @@ public class LocationPlayersFragment extends Fragment {
     @BindView(R.id.tv_name_team_2)
     TextView nameTeam2;
 
-    private int[] sequence = {1, 4, 2, 3, 1};
-    private int[] sequenceBack = {1, 3, 2, 4, 1};
     private static final String ARG_PLAYERS_TEAM = "team";
     private Teams teams;
 
@@ -70,23 +70,30 @@ public class LocationPlayersFragment extends Fragment {
     private void fillFootballField() {
         Stack<Player> playerStack;
         playerStack = TeamUtils.toStackRevert(teams.getPlayersTeam1());
-        getPlayerItems(playerStack, 1);
+        for (int i : teams.getSequenceTeam1()) {
+            fieldLayout1.addView(getView(i, 1, playerStack));
+        }
+
+//        getPlayerItems(playerStack, 1);
         playerStack = TeamUtils.toStack(teams.getPlayersTeam2());
-        getPlayerItems(playerStack, 2);
+        for (int i : TeamUtils.arrayRevert(teams.getSequenceTeam2())) {
+            fieldLayout2.addView(getView(i, 2, playerStack));
+        }
+//        getPlayerItems(playerStack, 2);
     }
 
-    private void getPlayerItems(Stack<Player> playerStack, int typeTeam) {
-        int[] arr;
-        if (typeTeam == 1) {
-            arr = sequence;
-        } else {
-            arr = sequenceBack;
-        }
-
-        for (int i : arr) {
-            fieldLayout.addView(getView(i, typeTeam, playerStack));
-        }
-    }
+//    private void getPlayerItems(Stack<Player> playerStack, int typeTeam) {
+//        int[] arr;
+//        if (typeTeam == 1) {
+//            arr = sequence;
+//        } else {
+//            arr = sequenceBack;
+//        }
+//
+//        for (int i : arr) {
+//            fieldLayout1.addView(getView(i, typeTeam, playerStack));
+//        }
+//    }
 
     private View getView(int countPlayers, int typeTeam, Stack<Player> playerStack) {
         View view;

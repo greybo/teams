@@ -45,5 +45,10 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="name" />
+        android:shadowColor="@color/text_shadow"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="3"
+        android:text="name"
+        android:textColor="@android:color/white" />
 </LinearLayout>

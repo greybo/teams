@@ -50,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
                     add(new Player("10", "name"));
                     add(new Player("11", "name"));
                 }});
+
+        teams.setSequenceTeam1(new int[]{1, 4, 2, 3, 1});
+        teams.setSequenceTeam2(new int[]{1, 4, 2, 3, 1});
         return teams;
     }
 }

@@ -8,5 +8,6 @@
     <color name="tab_background_unselected">#fff</color>
     <color name="colorText">#000000</color>
     <color name="gray">#ededed</color>
+    <color name="text_shadow">#7F000000</color>
 
 </resources>
