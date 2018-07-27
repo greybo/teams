@@ -20,34 +20,38 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-
+            <com.example.sbotlevskyi.teams.views.FootballFieldView
+                android:id="@+id/football_field"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/football_field"
-                android:orientation="vertical"
-                android:paddingBottom="16dp"
-                android:paddingTop="8dp">
+                android:layout_height="600dp" />
 
-                <LinearLayout
-                    android:id="@+id/football_field_layout_team_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="270dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@drawable/football_field"-->
+                <!--android:orientation="vertical"-->
+                <!--android:paddingBottom="16dp"-->
+                <!--android:paddingTop="8dp"-->
+                <!--android:visibility="gone">-->
 
-                </LinearLayout>
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/football_field_layout_team_1"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="270dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:orientation="vertical">-->
 
-                <LinearLayout
-                    android:id="@+id/football_field_layout_team_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="270dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                <!--</LinearLayout>-->
 
-                </LinearLayout>
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/football_field_layout_team_2"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="270dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:orientation="vertical">-->
 
-            </LinearLayout>
+                <!--</LinearLayout>-->
+            <!--</LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -10,4 +10,10 @@
     <color name="gray">#ededed</color>
     <color name="text_shadow">#7F000000</color>
 
+    <color name="green_football_field">#427c36</color>
+    <color name="football_field_line">#ffffff</color>
+    <color name="player_orange">#f2bf26</color>
+    <color name="player_black">#000000</color>
+    <color name="player_white">#ffffff</color>
+
 </resources>
