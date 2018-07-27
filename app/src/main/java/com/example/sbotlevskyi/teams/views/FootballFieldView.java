@@ -5,9 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -26,8 +24,8 @@ public class FootballFieldView extends View {
 
     private Paint paint = new Paint();
     private Teams teams;
-    private int centerWidth = getWidth() / 2;
-    private int centerHeight = getHeight() / 2;
+    private int centerWidth ;
+    private int centerHeight ;
     private int margeLine = 50;
     private float strokeWidth = 10;
     private int halfCircleRadius;
@@ -190,7 +188,7 @@ public class FootballFieldView extends View {
         paint.setStrokeWidth(3);
         canvas.drawCircle(centerX, centerY, playerRadius, paint);
 
-        paintText.setTextSize((float) (playerRadius * 0.7));
+        paintText.setTextSize((float) (playerRadius * 0.9));
         paintText.setColor(getContext().getResources().getColor(R.color.player_black));
         canvas.drawText(player.getName(), centerX,
                 centerY + playerRadius * 2, paintText);
@@ -201,6 +199,5 @@ public class FootballFieldView extends View {
 
         canvas.drawBitmap(bmpBall, centerX + playerRadius / 2, centerY + playerRadius / 2, null);
     }
-
 
 }
